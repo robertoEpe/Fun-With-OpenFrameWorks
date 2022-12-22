@@ -2,7 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofEnableAntiAliasing();
+	ofSetCircleResolution(50);
+	ofSetBackgroundAuto(false);
+	ofBackground(0);
 
+    image.load("asdf1.png");
 }
 
 //--------------------------------------------------------------
@@ -12,7 +17,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	ofBackground(220, 0, 200);
+	ofSetColor(0);
+	ofLine(0, 50, 400, 300);
+	ofSetRectMode(OF_RECTMODE_CENTER);
+	ofSetColor(255);
+	ofRect(200, 150, 150, 150);
 }
 
 //--------------------------------------------------------------
