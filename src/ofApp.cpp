@@ -3,6 +3,8 @@
 constexpr int screen_width = 400;
 constexpr int screen_height = 300;
 
+static int squareSize;
+static int lineWidth;
 
 static int circleX = 20;
 
@@ -18,7 +20,7 @@ void ofApp::setup(){
 	ofSetCircleResolution(50);
 
 	// When you don't want OF to erase your screen automatically
-	//ofSetBackgroundAuto(false);
+	ofSetBackgroundAuto(false);
 	
 	// Set the max FPS
 	ofSetFrameRate(30);
@@ -33,21 +35,29 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 
-	circleX += 1;
+	lineWidth = ofRandom(4, 28);
+	squareSize = ofRandom(5, 250);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	ofSetColor(ofColor::white);
-	ofDrawCircle(circleX, 100, 20);
+	ofSetRectMode(OF_RECTMODE_CENTER);
+	ofSetColor(0, 255, 0, 10);
+	ofFill();
+	ofDrawRectangle(screen_width/2, screen_height/2, squareSize, squareSize);
+
+	ofSetColor(0, 0, 255, 10);
+	ofNoFill();
+	ofSetLineWidth(lineWidth);
+	ofDrawRectangle(screen_width / 2, screen_height / 2, squareSize, squareSize);
 	
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	if (key == ' ')
-		circleX = 20;
+		ofBackground(ofColor::black);
 }
 
 //--------------------------------------------------------------
