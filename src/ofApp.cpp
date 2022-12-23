@@ -4,6 +4,8 @@ constexpr int screen_width = 400;
 constexpr int screen_height = 300;
 
 
+static int circleX = 20;
+
 //--------------------------------------------------------------
 void ofApp::setup(){
 	// Change the Window Shape
@@ -16,7 +18,7 @@ void ofApp::setup(){
 	ofSetCircleResolution(50);
 
 	// When you don't want OF to erase your screen automatically
-	ofSetBackgroundAuto(false);
+	//ofSetBackgroundAuto(false);
 	
 	// Set the max FPS
 	ofSetFrameRate(30);
@@ -31,17 +33,21 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 
+	circleX += 1;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
+	ofSetColor(ofColor::white);
+	ofDrawCircle(circleX, 100, 20);
 	
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == ' ')
+		circleX = 20;
 }
 
 //--------------------------------------------------------------
@@ -51,11 +57,7 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-	// Draw a red semi-transparent Ellipse at the mouse ubication
-	ofSetLineWidth(1);
-	ofSetColor(255, 0, 0, 50);
-	ofFill();
-	ofDrawEllipse(mouseX, mouseY, 10, 10);
+
 }
 
 //--------------------------------------------------------------
@@ -65,7 +67,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	ofBackground(ofColor::black);
+	
 }
 
 //--------------------------------------------------------------
