@@ -1,12 +1,14 @@
 #include "ofApp.h"
+#include <format>
 
 constexpr int screen_width = 400;
 constexpr int screen_height = 300;
 
-static int squareSize;
-static int lineWidth;
-
-static int circleX = 20;
+static int colorRed = 255;
+static int colorGreen = 0;
+static int colorBlue = 255;
+static int posX = 10;
+static int posY = 10;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -28,29 +30,23 @@ void ofApp::setup(){
 	// Erase in black
 	ofBackground(ofColor::black);
 
-	// Load an image at bin/data/asdf1.png
-    image.load("asdf1.png");
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-	lineWidth = ofRandom(4, 28);
-	squareSize = ofRandom(5, 250);
+	posX = ofRandomWidth();
+	posY = ofRandomHeight();
+	colorBlue = ofRandom(255);
+	colorRed = ofRandom(255);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	ofSetRectMode(OF_RECTMODE_CENTER);
-	ofSetColor(0, 255, 0, 10);
+	ofSetColor(colorRed, colorGreen,colorBlue, 10);
 	ofFill();
-	ofDrawRectangle(screen_width/2, screen_height/2, squareSize, squareSize);
-
-	ofSetColor(0, 0, 255, 10);
-	ofNoFill();
-	ofSetLineWidth(lineWidth);
-	ofDrawRectangle(screen_width / 2, screen_height / 2, squareSize, squareSize);
+	ofDrawCircle(posX, posY, 10);
 	
 }
 
@@ -58,6 +54,11 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
 	if (key == ' ')
 		ofBackground(ofColor::black);
+
+	if (key == 's') {
+		glReadBuffer(GL_FRONT); // HACK: only needed on windows, when using ofSetAutoBackground(false)
+		ofSaveScreen(std::format("screen_{}.png", ofRandom(10000, 100000)));
+	}
 }
 
 //--------------------------------------------------------------
